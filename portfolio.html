@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>portfolio</title>
+</head>
+<style>
+    @media screen and (max-width: 768px) {
+        /* Styles spécifiques pour les écrans de 768 pixels de large ou moins */
+    }
+    
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        /* Styles spécifiques pour les écrans de largeur comprise entre 768 et 1024 pixels */
+    }
+    
+    @media screen and (min-width: 1025px) {
+        /* Styles spécifiques pour les écrans de 1025 pixels de large ou plus */
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
+    }
+    
+    .fa {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 700px;
+        right: 40px;
+        height: 50px;
+        width: 50px;
+        background: rgb(203, 209, 18);
+        border-radius: 50%;
+        color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+        background-position: center;
+        background-repeat: no-repeat;
+        visibility: hidden;
+        opacity: 0;
+        /*cursor:pointer;*/
+        transition: .1s;
+        z-index: 10000;
+    }
+    
+    .fa.active {
+        visibility: visible;
+        opacity: 1;
+        bottom: 40px;
+    }
+    
+    .sec1 {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: hidden;
+        border-bottom: .1rem solid #ccc;
+    }
+    
+    .navBar {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #000000;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        box-shadow: 0 0 .5rem rgba(0, 0, 0, .2);
+        z-index: 2000;
+        color: #000000;
+    }
+    
+    .sec1__menuIcon {
+        display: none;
+        position: relative;
+        height: 30%;
+        width: 30%;
+        background: url('https://i.ibb.co/ccyJDPg/icons8-menu-24.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        transition: .5s;
+    }
+    
+    .sec1__menuIcon.active {
+        background: url('https://i.ibb.co/G9TDqVj/icons8-macos-close-32.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    
+    .navBar .logo h1 {
+        color: rgb(203, 209, 18);
+        font-size: 150%;
+        letter-spacing: .2rem;
+        position: relative;
+        right: 12%;
+    }
+    
+    .navBar .navBar__menu ul {
+        display: flex;
+        list-style-type: none;
+    }
+    
+    .navBar .navBar__menu ul li {
+        margin: 1.5rem;
+    }
+    
+    .navBar .navBar__menu ul li a {
+        position: relative;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 140%;
+        padding-bottom: 1rem;
+        color: #f0eaea;
+        transition: .3s;
+    }
+    
+    .navBar .navBar__menu ul li a:before {
+        background: rgb(203, 209, 18);
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        height: .4rem;
+        width: 0%;
+        border-radius: 1rem;
+        transition: .4s;
+    }
+    
+    .navBar .navBar__menu ul li a:hover:before {
+        width: 100%;
+    }
+    
+    .navBar .navBar__menu ul li a:hover {
+        color: rgb(203, 209, 18);
+    }
+    
+    .sec1__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        /* background: blue; */
+        width: 100%;
+        padding: 0 2%;
+    }
+    
+    .sec1__content .sec1__contentDetail h1 {
+        font-weight: 900;
+        font-size: 400%;
+        text-transform: capitalize;
+        transform: translateY(7rem);
+        color: #e8e9e8;
+    }
+    
+    .sec1__contentHider {
+        overflow: hidden;
+    }
+    
+    .sec1__content .sec1__contentDetail h1 span {
+        color: rgb(203, 209, 18);
+    }
+    
+    .sec1__content .sec1__contentDetail {
+        margin-bottom: 3rem;
+    }
+    
+    .sec1__content a {
+        background: rgb(151, 132, 21);
+        color: #fff;
+        text-decoration: none;
+        padding: 1rem 2.5rem;
+        font-size: 1.5rem;
+        border-radius: 1rem;
+        transition: .1s;
+    }
+    
+    .sec1__content a:hover {
+        background: rgb(243, 242, 240);
+        border: 2px solid rgb(128, 14, 128);
+        color: rgb(124, 4, 118);
+    }
+    
+    .sec1__imgBx {
+        position: relative;
+        width: 50rem;
+        /* background: red; */
+    }
+    
+    .sec1__imgBx img {
+        position: relative;
+        z-index: 1;
+        float: right;
+        width: 100%;
+        object-fit: cover;
+        filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .5));
+    }
+    
+    .sec1 {
+        background-image: url("dark3.png");
+        width: 100%;
+    }
+    
+    @keyframes animate {
+        0% {
+            transform: translateX(0rem);
+        }
+        50% {
+            transform: translateX(2rem);
+        }
+        100% {
+            transform: translateX(0rem);
+        }
+    }
+    
+    .sec2 {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        overflow: hidden;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-bottom: .2rem solid rgb(218, 218, 218);
+    }
+    
+    .sec2__heading {
+        overflow: hidden;
+    }
+    
+    .sec2__heading h2 {
+        position: relative;
+        font-size: 5rem;
+        color: rgb(8, 8, 8);
+        text-transform: capitalize;
+    }
+    
+    .sec2__heading h2:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: .2rem;
+        width: 100%;
+        background-color: rgb(226, 189, 23);
+    }
+    
+    .sec2__container {
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 0 5rem;
+    }
+    
+    .sec2__aboutme1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex: .5;
+        padding-top: 10%;
+    }
+    
+    .sec2__aboutme1Img {
+        position: relative;
+        width: 10rem;
+        overflow: hidden;
+        border: .3rem solid rgb(226, 189, 23);
+        padding: .3rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .3s;
+    }
+    
+    .sec2__aboutme1Img:hover {
+        transform: scale(1.1);
+    }
+    
+    .sec2__aboutme1Img img {
+        width: 100%;
+        object-fit: cover;
+        background: linear-gradient(rgb(14, 13, 13), rgb(128, 102, 18));
+        border-radius: 50%;
+    }
+    
+    .sec2__aboutme1 h2 {
+        position: relative;
+        font-size: 2rem;
+        color: rgb(175, 131, 8);
+        padding-bottom: 1rem;
+    }
+    
+    .sec2__aboutme1 h2:before {
+        position: absolute;
+        height: .2rem;
+        width: 60%;
+        bottom: 0;
+        right: 20%;
+        content: "";
+        background: rgb(226, 189, 23);
+    }
+    
+    .sec2__aboutme1Social ul {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 1rem;
+        list-style-type: none;
+    }
+    
+    .sec2__aboutme1Social ul li {
+        margin: 0 2rem;
+        transition: .3s;
+    }
+    
+    .sec2__aboutme1Social ul li a {
+        text-decoration: none;
+        color: rgb(161, 139, 11);
+        font-size: 3rem;
+        transition: .3s;
+    }
+    
+    .sec2__aboutme1Social ul li:hover {
+        transform: translateY(-.3rem);
+    }
+    
+    .sec2__aboutme1Social ul li:nth-child(1) a:hover {
+        color: rgb(238, 17, 109);
+    }
+    
+    .sec2__aboutme1Social ul li:nth-child(2) a:hover {
+        color: rgb(0, 0, 0);
+    }
+    
+    .sec2__aboutme1Social ul li:nth-child(3) a:hover {
+        color: rgb(64, 16, 197);
+    }
+    
+    .sec2__aboutme2 {
+        position: relative;
+        flex: ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sec2__aboutme2 p {
+        font-size: 1.5rem;
+        padding-bottom: 10%;
+        padding-top: 10%;
+    }
+    
+    .sec3 {
+        position: relative;
+        min-height: 50vh;
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        padding-bottom: 7%;
+    }
+    
+    .sec3 h1 {
+        position: relative;
+        color: #000000;
+        font-size: 400%;
+        width: max-content;
+        letter-spacing: 2px;
+        border-bottom: .2rem solid rgb(175, 131, 8);
+    }
+    
+    .sec4 {
+        overflow: hidden;
+        position: relative;
+        min-height: 70vh;
+        width: 100%;
+        background-color: #333;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .sec4__container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        padding: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .sec4__box1 {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        flex-direction: column;
+        flex: .5;
+        padding-bottom: 6%;
+    }
+    
+    .sec4__content1 {
+        margin-bottom: 1rem;
+    }
+    
+    .sec4__content1 h2 {
+        color: #fff;
+        font-size: 3rem;
+        border-bottom: .2rem solid rgb(175, 131, 8);
+        width: fit-content;
+        padding-bottom: .5rem;
+        margin-bottom: .5rem;
+    }
+    
+    .sec4__content1 h2 span {
+        color: rgb(175, 131, 8);
+    }
+    
+    .sec4__content1 p {
+        color: rgb(246, 248, 248);
+    }
+    
+    .sec4__content2Icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(175, 131, 8);
+    }
+    
+    .sec4__content2Icon h2 {
+        margin-left: .5rem;
+    }
+    
+    .sec4__content2 {
+        margin: .5rem 0;
+    }
+    
+    .sec4__content3 ul {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        list-style-type: none;
+        margin-top: 1rem;
+        position: relative;
+        left: 8%;
+    }
+    
+    .sec4__content3 ul li {
+        margin: 0 1.5rem 0 0;
+    }
+    
+    .sec4__content3 ul li a {
+        color: rgb(209, 168, 31);
+        font-size: 2rem;
+        border: .2rem solid rgb(138, 125, 125);
+        padding: .4rem;
+        border-radius: 20%;
+        transition: .3s;
+    }
+    
+    .sec4__content3 ul li a:hover {
+        color: rgba(255, 255, 255, .5);
+    }
+    
+    .sec4__box2 {
+        padding-bottom: 6%;
+    }
+    
+    .sec4__box2 h2 {
+        color: #fff;
+        font-size: 3rem;
+        border-bottom: .2rem solid rgb(175, 131, 8);
+    }
+    
+    .sec4__links ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        list-style-type: none;
+    }
+    
+    .sec4__links ul li {
+        margin: .5rem 0;
+    }
+    
+    .sec4__links ul li a {
+        color: rgba(255, 255, 255, 0.5);
+        transition: .3s;
+        text-decoration: none;
+        font-size: 1.5rem;
+    }
+    
+    .sec4__links ul li a:hover {
+        color: #fff;
+    }
+    
+    .sec4__box3 h2 {
+        color: rgb(255, 255, 255);
+        font-size: 3rem;
+        border-bottom: .2rem solid rgb(175, 131, 8);
+        padding-bottom: .5rem;
+        margin-bottom: .5rem;
+        width: fit-content;
+    }
+    
+    .sec4__box3 form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    
+    .sec4__box3 form input {
+        border: none;
+        outline: none;
+        background: #fff;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, .5);
+        padding: .5rem 1rem;
+        margin: 1rem 0;
+        width: 100%;
+        border-radius: 3rem;
+    }
+    
+    .sec4__box3 form input::placeholder {
+        color: #333;
+        font-size: 1.1rem;
+    }
+    
+    .sec4__box3 form button {
+        border: none;
+        background: none;
+        outline: none;
+        padding: .5rem 2rem;
+        color: #fff;
+        background: rgb(204, 155, 21);
+        cursor: pointer;
+        transition: .3s;
+        border-radius: 3rem;
+    }
+    
+    .sec4__box3 form button:hover {
+        color: rgb(175, 131, 8);
+        background: rgb(255, 255, 255);
+    }
+    
+    .skills-list {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 3%;
+    }
+    
+    .skills-list li {
+        background-color: #f2f2f2;
+        color: #333;
+        font-size: 16px;
+        padding: 8px 16px;
+        margin: 8px;
+        border-radius: 4px;
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .skills-list li:hover {
+        background-color: #131212;
+        color: #fff;
+        cursor: pointer;
+        transform: translateY(-10px);
+    }
+    /* media query start here  */
+</style>
+
+<body>
+    <i class="fa fa-arrow-up" aria-hidden="true" onclick="scrollToTop();"></i>
+    <section class="sec1" id="section1">
+
+        <div class="navBar">
+            <div class="logo">
+                <h1>ABDELLAH</h1>
+            </div>
+            <div class="navBar__menu">
+                <ul>
+                    <li>
+                        <a href="#section1">Home</a>
+                    </li>
+                    <li>
+                        <a href="#section2">About</a>
+                    </li>
+                    <li>
+                        <a href="#section3">Skill</a>
+                    </li>
+                    <li>
+                        <a href="#section4">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sec1__menuIcon"></div>
+        </div>
+        <div class="sec1__container">
+            <div class="sec1__content">
+                <div class="sec1__contentDetail">
+                    <div class="sec1__contentHider">
+                        <h1>hi,</h1>
+                    </div>
+                    <div class="sec1__contentHider">
+                        <h1>I'am <span>Abdellah</span></h1>
+                    </div>
+                    <div class="sec1__contentHider">
+                        <h1>Web Developer and Designer</h1>
+                    </div>
+                </div>
+                <a href="https://www.instagram.com/rp_abdou/"><b>Follow Me</b> <i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="sec1__imgContainer">
+                <div class="sec1__imgBx">
+                    <img src="me3.png" style="width: 400px" />
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sec2" id="section2">
+        <div class="sec2__heading">
+            <h2>ABOUT ME</h2>
+        </div>
+        <div class="sec2__container">
+            <div class="sec2__aboutme1" data-aos="fade-up" data-aos-offset="-90">
+                <div class="sec2__aboutme1Img">
+                    <img src="me1.jpg" style="width:90px">
+                </div>
+                <h2>Ben Khlifa Abdellah</h2>
+                <div class="sec2__aboutme1Social">
+                    <ul>
+                        <li>
+                            <a href="https://www.instagram.com/rp_abdou/"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-google"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://web.facebook.com/profile.php?id=100080953745564"><i class="fab fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sec2__aboutme2" data-aos="fade-up" data-aos-delay="1000">
+                <p>talented and passionate web developer and designer. With a unique blend of technical expertise and creative vision, I bring websites to life with stunning aesthetics and seamless functionality. My journey in web development and design
+                    began with a deep curiosity and love for technology. From an early age, I immersed myself in coding languages, exploring their intricacies and possibilities. This foundation ignited my passion for creating beautiful and user-friendly
+                    digital experiences. Equipped with a formal education in computer science and design, I possess a comprehensive understanding of the principles that drive successful websites. My expertise spans across a range of programming languages,
+                    design frameworks, and user experience strategies, allowing me to craft engaging and intuitive online platforms.</p>
+            </div>
+        </div>
+    </section>
+    <section class="sec3" id="section3">
+        <div class="skills-section">
+            <center>
+                <h1>SKILLS</h1>
+            </center>
+            <ul class="skills-list">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>PHP</li>
+                <LI>pyhton</LI>
+                <li>Java</li>
+                <li>Ruby</li>
+                <li>Responsive Web Design</li>
+                <li>UI/UX Design</li>
+                <li>Front-end Frameworks (e.g., Bootstrap)</li>
+                <li>3D modeling</li>
+                <li>Adobe Creative Suite</li>
+                <li>Wireframing and Prototyping</li>
+                <li>Problem Solving</li>
+            </ul>
+        </div>
+    </section>
+    <section class="sec4" id="section4">
+        <div class="sec4__container">
+            <div class="sec4__box1">
+
+                <div class="sec4__content2" data-aos="fade-right" data-aos-delay="200">
+
+                    <div class="sec4__content2Icon">
+                        <i class="fas fa-envelope"></i>
+                        <h2>benkhlifaabdellah01@gmail.com</h2>
+                    </div>
+                </div>
+
+                <div class="sec4__content3" data-aos="fade-right" data-aos-delay="500">
+                    <ul>
+                        <li>
+                            <a href="https://www.instagram.com/rp_abdou/"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-google"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://m.facebook.com/profile.php"><i class="fab fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/rp-abdou-961486222/?fbclid=IwAR0ILhb7yU09_U2wDuc1ArDZV8KHWBhhTpThIE1JBHtpT98DJPHMz11-ekU"><i class="fab fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/rpABDOU"><i class="fab fa-github"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="sec4__box2" data-aos="fade-in" data-aos-delay="500">
+                <CENTER>
+                    <h2>Quick links</h2>
+                </CENTER>
+                <div class="sec4__links">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Skill</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sec4__box3">
+                <CENTER>
+                    <h2><span>CONTACT US</span></h2>
+                </CENTER>
+                <form name="contact" method="POST" data-netlify="true">
+                    <input data-aos="fade-left" data-aos-delay="500" class="sec4__email" type="email" placeholder="Enter your Email" />
+                    <input class="sec4__message" data-aos="fade-left" data-aos-delay="1000" type="text" placeholder="Enter a feedback or a suggestion" />
+                    <button type="submit">send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous"></script>
+    <script>
+        const tl = gsap.timeline({
+            defaults: {
+                ease: "power1.out"
+            }
+        });
+
+        tl.from(".navBar", {
+            y: "-10rem",
+            duration: 0.5
+        });
+        tl.from(".navBar .navBar__menu ul li", {
+            y: "-2rem",
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.25,
+        });
+
+        tl.to(
+            ".sec1__content .sec1__contentDetail h1", {
+                y: "0rem",
+                duration: 0.5,
+                stagger: 0.25
+            },
+            "=-1"
+        );
+        tl.from(".sec1__imgBx img", {
+            opacity: 0,
+            x: "50%",
+            duration: 0.5
+        });
+        tl.from(
+            ".sec1__imgBx .sec1__design1", {
+                opacity: 0,
+                x: "3rem",
+                duration: 0.5
+            },
+            "=-1"
+        );
+        tl.from(
+            ".sec1__imgBx .sec1__design2", {
+                opacity: 0,
+                x: "-3rem",
+                duration: 0.5
+            },
+            "=-1"
+        );
+        tl.from(
+            ".sec1__design3", {
+                opacity: 0,
+                x: "-30%",
+                duration: 0.5
+            },
+            "=-2"
+        );
+        tl.from(".sec1__design4", {
+            opacity: 0,
+            duration: 0.5
+        }, "=-2");
+        tl.from(".sec1__content a", {
+            opacity: 0,
+            duration: 0.5
+        }, "=-3");
+    </script>
+    <!-- our AOs will occur here -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            offset: 0,
+        });
+    </script>
+    <script>
+        var sec1__menuIcon = document.querySelector(".sec1__menuIcon");
+        var menuBar = document.querySelector(".menuBar");
+        sec1__menuIcon.addEventListener("click", function() {
+            sec1__menuIcon.classList.toggle("active");
+            menuBar.classList.toggle("active");
+        });
+    </script>
+    <script type="text/javascript">
+        window.addEventListener('scroll', function() {
+            var scroll = document.querySelector('.fa');
+            scroll.classList.toggle("active", window.scrollY > 500)
+        })
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+        }
+    </script>
+</body>
+
+</html>
