@@ -755,14 +755,30 @@
                 <CENTER>
                     <h2><span>CONTACT US</span></h2>
                 </CENTER>
-                <form name="contact" action="https://formsubmit.co/el/bejade" method="POST" data-netlify="true">
-                    <input data-aos="fade-left" data-aos-delay="500" class="sec4__email" type="email" placeholder="Enter your Email" />
-                    <input class="sec4__message" data-aos="fade-left" data-aos-delay="1000" type="text" placeholder="Enter a feedback or a suggestion" />
+                <form name="contact"  method="POST" data-netlify="true">
+                    <input data-aos="fade-left" data-aos-delay="500" class="sec4__email" type="email" placeholder="Enter your Email" id="email" required>
+                    <input class="sec4__message" data-aos="fade-left" data-aos-delay="1000" type="text" placeholder="Enter a feedback or a suggestion" id="feedback">
                     <button type="submit">send</button>
                 </form>
             </div>
         </div>
     </section>
+    <script src="https://smtpjs.com/v3/smtp.js">
+</script>
+    <script>
+        function sendEmail(){
+Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "benkhlifaabdellah48@gmail.com",
+    Password : "9A433F3A03F62282B8C4074948D02FDFA008",
+    To : 'benkhlifaabdellah48@gmail.com',
+    From : document.getElementById("email").value,
+    Subject : "New feedback",
+    Body : "feedback :" + document.getElementById("feedback").value,
+}).then(
+  message => alert("Thanks for your feedback" )
+);
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous"></script>
     <script>
         const tl = gsap.timeline({
