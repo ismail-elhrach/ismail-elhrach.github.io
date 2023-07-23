@@ -755,7 +755,7 @@
                 <CENTER>
                     <h2><span>CONTACT US</span></h2>
                 </CENTER>
-                <form name="contact"  method="POST" data-netlify="true">
+                <form onsubmit="sendEmail(); reset; return false;">
                     <input data-aos="fade-left" data-aos-delay="500" class="sec4__email" type="email" placeholder="Enter your Email" id="email" required>
                     <input class="sec4__message" data-aos="fade-left" data-aos-delay="1000" type="text" placeholder="Enter a feedback or a suggestion" id="feedback">
                     <button type="submit">send</button>
