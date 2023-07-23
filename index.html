@@ -755,29 +755,30 @@
                 <CENTER>
                     <h2><span>CONTACT US</span></h2>
                 </CENTER>
-                <form onsubmit="sendEmail(); reset; return false;" method"POST">
-                    <input data-aos="fade-left" data-aos-delay="500" class="sec4__email" type="email" placeholder="Enter your Email" id="email" required>
-                    <input class="sec4__message" data-aos="fade-left" data-aos-delay="1000" type="text" placeholder="Enter a feedback or a suggestion" id="feedback" required>
+                <form action="traitement_formulaire.php" method="post">
+                    <input data-aos="fade-left" data-aos-delay="500" class="sec4__email" type="email" placeholder="Enter your Email" id="email" name="email" required>
+                    <input class="sec4__message" data-aos="fade-left" data-aos-delay="1000" type="text" placeholder="Enter a feedback or a suggestion" id="feedback" name="feedback" required>
                     <button type="submit">send</button>
                 </form>
             </div>
         </div>
     </section>
-    <script src="https://smtpjs.com/v3/smtp.js">
-</script>
-    <script>
-        function sendEmail(){
-Email.send({
-    SecureToken: "0b1ccc26-4041-4f49-a80f-847d5bc2d376",
-    To : 'benkhlifaabdellah48@gmail.com',
-    From : document.getElementById("email").value,
-    Subject : "New feedback",
-    Body : "feedback :" + document.getElementById("feedback").value,
-}).then(
-  message => alert("Thanks for your feedback" )
-);
-    }
-    </script>
+   <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $email = $_POST["email"];
+    $feedback = $_POST["feedback"];
+
+    // Envoyer l'e-mail (ex : en utilisant la fonction mail() de PHP)
+    $to = "benkhlifaabdellah48@gmail.com";
+    $sujet = "Nouveau message de votre site web";
+    $contenu = "E-mail: $email\nMessage:\n$message";
+    mail($to, $sujet, $contenu);
+
+    // Rediriger l'utilisateur après l'envoi du formulaire
+    header("Location: confirmation.html");
+}
+?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous"></script>
     <script>
         const tl = gsap.timeline({
