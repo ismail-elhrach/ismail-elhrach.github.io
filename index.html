@@ -755,7 +755,7 @@
                 <CENTER>
                     <h2><span>CONTACT US</span></h2>
                 </CENTER>
-                <form onsubmit="sendEmail(); reset; return false;">
+                <form onsubmit="sendEmail(); reset; return false;" method"POST">
                     <input data-aos="fade-left" data-aos-delay="500" class="sec4__email" type="email" placeholder="Enter your Email" id="email" required>
                     <input class="sec4__message" data-aos="fade-left" data-aos-delay="1000" type="text" placeholder="Enter a feedback or a suggestion" id="feedback">
                     <button type="submit">send</button>
@@ -768,9 +768,7 @@
     <script>
         function sendEmail(){
 Email.send({
-    Host : "smtp.elasticemail.com",
-    Username : "benkhlifaabdellah48@gmail.com",
-    Password : "9A433F3A03F62282B8C4074948D02FDFA008",
+    SecureToken: "0b1ccc26-4041-4f49-a80f-847d5bc2d376",
     To : 'benkhlifaabdellah48@gmail.com',
     From : document.getElementById("email").value,
     Subject : "New feedback",
