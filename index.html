@@ -755,7 +755,7 @@
                 <CENTER>
                     <h2><span>CONTACT US</span></h2>
                 </CENTER>
-                <form onsubmit="sendEmail(); reset; return false;" method="post">
+                <form action="contact.php" method="post">
                     <input data-aos="fade-left" data-aos-delay="500" class="sec4__email" type="email" placeholder="Enter your Email" id="email" name="email" required>
                     <input class="sec4__message" data-aos="fade-left" data-aos-delay="1000" type="text" placeholder="Enter a feedback or a suggestion" id="feedback" name="feedback" required>
                     <button type="submit">send</button>
@@ -874,26 +874,7 @@
     <!-- 100% privacy-first analytics -->
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
-<?php 
-    $host="local_host";
-    $user_name="Abdellah";
-    $password="";
-    $database="abdelbenk";
-    $conn=newmysqli($host, $user_name, $password, $database);
-    if ($conn->connect_error){
-    die("connexion error:". $conn->connect_error);
-    }
-    $email = $_POST["name"];
-    $feedback = $_POST["feedback"];
-    $sql = "INSERT INTO donnée(email, feedback) VALUES("$email","$feedback");
-    if(mysqli_query($conn, $sql)){
-    echo "message envoyé";
-    }
-    else{
-    echo " message pas envoyé";}
-    }
-    mysqli_close($conn);
-    ?>
+
     
     
 </body>
