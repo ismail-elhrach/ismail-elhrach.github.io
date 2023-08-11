@@ -168,12 +168,15 @@
         padding: 0 2%;
     }
     
-    .sec1__content .sec1__contentDetail h1 {
-        font-weight: 900;
-        font-size: 400%;
+    .first-text {
+       
+        font-size: 300%;
         text-transform: capitalize;
         transform: translateY(7rem);
         color: #e8e9e8;
+        position: relative;
+        top: -260px;
+        
     }
     
     .sec1__contentHider {
@@ -220,7 +223,7 @@
     }
     
     .sec1 {
-        background-image: url("dark3.png");
+        background-color: #131212;
         width: 100%;
     }
     
@@ -630,18 +633,14 @@
         </div>
         <div class="sec1__container">
             <div class="sec1__content">
-                <div class="sec1__contentDetail">
-                    <div class="sec1__contentHider">
-                        <h1>Hi,</h1>
-                    </div>
-                    <div class="sec1__contentHider">
-                        <h1>I'am <span>Abdellah</span></h1>
-                    </div>
-                    <div class="sec1__contentHider">
-                        <h1>Web Developer and Designer</h1>
-                    </div>
+                <div class="first-text" style="color: #fff;">
+                    <h2>Hi !</h2>
+                    <h2>I am Abdellah</h2>
+                    <h2>Web developer & Graphic Designer</h2>
                 </div>
+                <div>
                 <a href="https://www.instagram.com/rp_abdou/"><b>Follow Me</b> <i class="fab fa-instagram"></i></a>
+            </div>
             </div>
             <div class="sec1__imgContainer">
                 <div class="sec1__imgBx">
@@ -777,6 +776,7 @@
                 message => alert("Thanks for your feedback")
             );
         }
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous"></script>
     <script>
         const tl = gsap.timeline({
@@ -797,10 +797,10 @@
         });
 
         tl.to(
-            ".sec1__content .sec1__contentDetail h1", {
+            ".sec1__content .first-text ", {
                 y: "0rem",
                 duration: 0.5,
-                stagger: 0.25
+                stagger: 0.75
             },
             "=-1"
         );
@@ -841,6 +841,7 @@
             opacity: 0,
             duration: 0.5
         }, "=-3");
+   
     </script>
     <!-- our AOs will occur here -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -867,7 +868,7 @@
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: 'smooth',
             })
         }
     </script>
